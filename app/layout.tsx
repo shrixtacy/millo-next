@@ -1,9 +1,25 @@
 import type { Metadata } from "next";
+import { DM_Serif_Display, DM_Sans } from "next/font/google";
 import "./globals.css";
 import { CartProvider } from "@/context/CartContext";
 import Navbar from "@/components/Navbar";
 import CartDrawer from "@/components/CartDrawer";
 import Footer from "@/components/Footer";
+import MobileBottomNav from "@/components/mobile/MobileBottomNav";
+
+const dmSerif = DM_Serif_Display({
+  subsets: ["latin"],
+  weight: ["400"],
+  variable: "--font-heading",
+  display: "swap",
+});
+
+const dmSans = DM_Sans({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
+  variable: "--font-body",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: {
@@ -24,12 +40,13 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body>
+      <body className={`${dmSerif.variable} ${dmSans.variable}`}>
         <CartProvider>
           <Navbar />
           <CartDrawer />
-          <main>{children}</main>
+          <main className="pb-16 lg:pb-0">{children}</main>
           <Footer />
+          <MobileBottomNav />
         </CartProvider>
       </body>
     </html>
