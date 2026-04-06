@@ -1,76 +1,72 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 const features = [
   {
-    icon: (
-      <svg viewBox="0 0 40 40" fill="none" className="w-8 h-8">
-        <circle cx="20" cy="20" r="18" stroke="#2F5D3A" strokeWidth="2" />
-        <path d="M20 10c0 0-8 5-8 12a8 8 0 0016 0c0-7-8-12-8-12z" fill="#2F5D3A" opacity="0.2" stroke="#2F5D3A" strokeWidth="1.5" strokeLinejoin="round"/>
-        <path d="M20 16v8M17 21l3 3 3-3" stroke="#2F5D3A" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-      </svg>
-    ),
+    stat: "8g+",
     title: "High Fiber",
     desc: "Millet is naturally rich in dietary fiber, supporting gut health and keeping you full longer.",
+    bg: "bg-[#2F5D3A]",
+    text: "text-white",
+    sub: "text-white/70",
+    img: "/media/products/sattu.png",
   },
   {
-    icon: (
-      <svg viewBox="0 0 40 40" fill="none" className="w-8 h-8">
-        <circle cx="20" cy="20" r="18" stroke="#E4572E" strokeWidth="2" />
-        <path d="M14 26l3-8 3 4 3-6 3 10" stroke="#E4572E" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-        <circle cx="20" cy="13" r="2" fill="#E4572E" opacity="0.3" stroke="#E4572E" strokeWidth="1.5"/>
-      </svg>
-    ),
+    stat: "Low GI",
     title: "Sustained Energy",
-    desc: "Low glycemic index grains release energy slowly, keeping you energized throughout the day.",
+    desc: "Low glycemic index grains release energy slowly — no crash, just clean fuel all day.",
+    bg: "bg-[#F5E6D3]",
+    text: "text-gray-900",
+    sub: "text-gray-500",
+    img: "/media/products/namkin.png",
   },
   {
-    icon: (
-      <svg viewBox="0 0 40 40" fill="none" className="w-8 h-8">
-        <circle cx="20" cy="20" r="18" stroke="#2F5D3A" strokeWidth="2" />
-        <path d="M13 20l5 5 9-9" stroke="#2F5D3A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-      </svg>
-    ),
+    stat: "0%",
     title: "No Preservatives",
     desc: "Clean label products with zero artificial additives, colors, or preservatives. Just real food.",
+    bg: "bg-white border border-gray-100",
+    text: "text-gray-900",
+    sub: "text-gray-500",
+    img: null,
   },
   {
-    icon: (
-      <svg viewBox="0 0 40 40" fill="none" className="w-8 h-8">
-        <circle cx="20" cy="20" r="18" stroke="#E4572E" strokeWidth="2" />
-        <path d="M20 28c-5-3-9-7-9-12a9 9 0 0118 0c0 5-4 9-9 12z" fill="#E4572E" opacity="0.15" stroke="#E4572E" strokeWidth="1.5"/>
-        <path d="M20 22v-6M17 19l3-3 3 3" stroke="#E4572E" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-      </svg>
-    ),
-    title: "Climate-Friendly",
-    desc: "Millets require 70% less water than rice and wheat, making them one of the most sustainable crops.",
+    stat: "70%",
+    title: "Less Water",
+    desc: "Millets need 70% less water than rice and wheat — one of the most climate-resilient crops on earth.",
+    bg: "bg-[#ff914d]/10",
+    text: "text-gray-900",
+    sub: "text-gray-500",
+    img: null,
   },
 ];
 
 export default function Features() {
   return (
-    <section className="relative py-24 bg-white" style={{ zIndex: 10 }}>
+    <section className="relative py-28 bg-white" style={{ zIndex: 10 }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="max-w-2xl mb-16"
         >
           <span className="text-sm font-semibold tracking-widest uppercase text-transparent bg-clip-text" style={{ backgroundImage: "linear-gradient(135deg, #ff914d, #ff3131)" }}>
             Why Millo
           </span>
-          <h2 className="text-4xl font-bold text-gray-900 mt-3">
-            Goodness in every grain
+          <h2 className="text-5xl font-bold text-gray-900 mt-3 leading-tight">
+            Goodness in<br />every grain.
           </h2>
-          <p className="text-gray-500 mt-4 max-w-xl mx-auto">
-            We believe food should nourish you without compromise. Every Millo product is crafted with intention.
+          <p className="text-gray-500 mt-4 text-lg leading-relaxed">
+            Every Millo product is crafted with intention — clean ingredients, real nutrition, zero compromise.
           </p>
         </motion.div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {/* Bento grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {features.map((f, i) => (
             <motion.div
               key={f.title}
@@ -78,11 +74,22 @@ export default function Features() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: i * 0.1 }}
-              className="group p-8 rounded-2xl bg-[#faf9f7] border border-gray-100 hover:border-[#2F5D3A]/20 hover:shadow-lg transition-all duration-300"
+              className={`relative rounded-3xl p-8 overflow-hidden flex flex-col justify-between min-h-[280px] shadow-sm hover:shadow-xl transition-all duration-300 ${f.bg}`}
             >
-              <div className="mb-5">{f.icon}</div>
-              <h3 className="text-lg font-bold text-gray-900 mb-2">{f.title}</h3>
-              <p className="text-sm text-gray-500 leading-relaxed">{f.desc}</p>
+              {/* Product image if available */}
+              {f.img && (
+                <div className="absolute -bottom-4 -right-4 w-36 h-36 opacity-20 pointer-events-none">
+                  <Image src={f.img} alt="" fill className="object-contain" />
+                </div>
+              )}
+
+              <div>
+                <p className={`text-5xl font-bold mb-4 ${f.text}`} style={f.bg.includes("2F5D3A") ? { backgroundImage: "none" } : { backgroundImage: "linear-gradient(135deg, #ff914d, #ff3131)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
+                  {f.stat}
+                </p>
+                <h3 className={`text-xl font-bold mb-2 ${f.text}`}>{f.title}</h3>
+                <p className={`text-sm leading-relaxed ${f.sub}`}>{f.desc}</p>
+              </div>
             </motion.div>
           ))}
         </div>

@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { ShoppingBag, Menu, X } from "lucide-react";
 import { useCart } from "@/context/CartContext";
 
@@ -31,17 +32,8 @@ export default function Navbar() {
     >
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-2 group">
-          <div className="w-8 h-8 bg-[#2F5D3A] rounded-full flex items-center justify-center">
-            <span className="text-[#F5E6D3] text-xs font-bold font-heading">M</span>
-          </div>
-          <span
-            className={`text-xl font-bold font-heading tracking-tight transition-colors ${
-              scrolled ? "text-[#2F5D3A]" : "text-[#2F5D3A]"
-            }`}
-          >
-            Millo
-          </span>
+        <Link href="/" className="flex items-center group">
+          <Image src="/media/brand/millo-png.png" alt="Millo" width={100} height={40} className="h-10 w-auto object-contain" priority />
         </Link>
 
         {/* Desktop Links */}
