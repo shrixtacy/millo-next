@@ -1,0 +1,95 @@
+{%- style -%}
+  .header-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 50;
+    transition: all 0.3s ease;
+  }
+{%- endstyle -%}
+
+<header class="header-wrapper">
+  <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+    <!-- Logo -->
+    <a href="/" class="flex items-center group">
+      {%- if section.settings.logo != blank -%}
+        <img 
+          src="{{ section.settings.logo | image_url: width: 200 }}" 
+          alt="{{ shop.name }}" 
+          class="h-10 w-auto object-contain"
+          loading="eager"
+        >
+      {%- else -%}
+        <img 
+          src="{{ 'millo-logo.png' | asset_url }}" 
+          alt="Millo" 
+          class="h-10 w-auto object-contain"
+          loading="eager"
+        >
+      {%- endif -%}
+    </a>
+
+    <!-- Desktop Links -->
+    <ul class="hidden md:flex items-center gap-8">
+      {%- for link in section.settings.menu.links -%}
+        <li>
+          <a href="{{ link.url }}" class="text-sm font-medium transition-colors hover:text-[#ff914d] text-gray-800">
+            {{ link.title }}
+          </a>
+        </li>
+      {%- endfor -%}
+    </ul>
+
+    <!-- Cart + Mobile -->
+    <div class="flex items-center gap-4">
+      <button
+        type="button"
+        class="relative p-2 rounded-full hover:bg-black/10 transition-colors"
+        aria-label="Open cart"
+      >
+        {% render 'icon-cart', size: 22 %}
+        <span id="cart-count-badge" class="{% if cart.item_count == 0 %}hidden{% endif %} absolute -top-1 -right-1 w-5 h-5 text-white text-xs rounded-full flex items-center justify-center font-medium" style="background: linear-gradient(135deg, #ff914d, #ff3131)">
+          {{ cart.item_count }}
+        </span>
+      </button>
+
+      <button
+        type="button"
+        class="md:hidden p-2"
+        aria-label="Toggle menu"
+        aria-expanded="false"
+      >
+        <svg id="menu-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100 px-4 py-4 space-y-3">
+    {%- for link in section.settings.menu.links -%}
+      <a href="{{ link.url }}" class="block text-gray-700 font-medium py-2 hover:text-[#E4572E] transition-colors">
+        {{ link.title }}
+      </a>
+    {%- endfor -%}
+  </div>
+</header>
+
+{% schema %}
+{
+  "name": "Header",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo"
+    },
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Menu",
+      "default": "main-menu"
+    }
+  ]
+}
+{% endschema %}

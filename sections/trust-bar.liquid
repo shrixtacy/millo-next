@@ -1,0 +1,50 @@
+<section class="py-12 bg-[#2F5D3A] overflow-hidden">
+  <div class="relative flex">
+    <div class="flex animate-marquee whitespace-nowrap">
+      {%- for i in (1..3) -%}
+        {%- for block in section.blocks -%}
+          <span class="flex items-center flex-shrink-0">
+            <span class="text-white/90 text-xl font-semibold tracking-widest uppercase px-8">
+              {{ block.settings.text }}
+            </span>
+            <span class="text-[#ff914d] font-bold text-3xl">·</span>
+          </span>
+        {%- endfor -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Trust Bar Marquee",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "marquee_item",
+      "name": "Marquee Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text",
+          "default": "Sourced from Indian Farmers"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Trust Bar Marquee",
+      "blocks": [
+        { "type": "marquee_item", "settings": { "text": "Sourced from Indian Farmers" } },
+        { "type": "marquee_item", "settings": { "text": "Made in India" } },
+        { "type": "marquee_item", "settings": { "text": "Sustainable Crops" } },
+        { "type": "marquee_item", "settings": { "text": "No Preservatives" } },
+        { "type": "marquee_item", "settings": { "text": "Clean Label" } },
+        { "type": "marquee_item", "settings": { "text": "FSSAI Certified" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

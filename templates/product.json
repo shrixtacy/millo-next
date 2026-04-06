@@ -1,0 +1,27 @@
+{
+  "sections": {
+    "main": {
+      "type": "product-main",
+      "blocks": {
+        "badge_1": {
+          "type": "trust_badge",
+          "settings": { "label": "100% Natural", "icon": "🌿" }
+        },
+        "badge_2": {
+          "type": "trust_badge",
+          "settings": { "label": "No Preservatives", "icon": "🛡️" }
+        },
+        "badge_3": {
+          "type": "trust_badge",
+          "settings": { "label": "High Fiber", "icon": "⚡" }
+        },
+        "badge_4": {
+          "type": "trust_badge",
+          "settings": { "label": "FSSAI Certified", "icon": "✅" }
+        }
+      },
+      "block_order": ["badge_1", "badge_2", "badge_3", "badge_4"]
+    }
+  },
+  "order": ["main"]
+}

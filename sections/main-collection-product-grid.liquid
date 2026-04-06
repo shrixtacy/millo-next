@@ -1,0 +1,24 @@
+<div class="bg-[#faf9f7] pb-24">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    {%- paginate collection.products by 16 -%}
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {%- for product in collection.products -%}
+          {% render 'product-card', product: product %}
+        {%- endfor -%}
+      </div>
+
+      {%- if paginate.pages > 1 -%}
+        <div class="mt-12 flex justify-center">
+          {{ paginate | default_pagination }}
+        </div>
+      {%- endif -%}
+    {%- endpaginate -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Collection Product Grid",
+  "settings": []
+}
+{% endschema %}

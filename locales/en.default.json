@@ -1,0 +1,30 @@
+{
+  "general": {
+    "share": {
+      "success_message": "Link copied to clipboard"
+    }
+  },
+  "sections": {
+    "cart": {
+      "cart_error": "An error occurred while updating your cart.",
+      "cart_quantity_error_html": "You can't add [quantity] to your cart"
+    }
+  },
+  "products": {
+    "product": {
+      "add_to_cart": "Add to Cart",
+      "sold_out": "Sold Out",
+      "unavailable": "Unavailable",
+      "value_unavailable": "[value] - Unavailable",
+      "media": {
+        "image_available": "Image [index] is available"
+      }
+    }
+  },
+  "templates": {
+    "404": {
+      "title": "404 Page Not Found",
+      "subtext": "Sorry, the page you're looking for doesn't exist or has been moved."
+    }
+  }
+}

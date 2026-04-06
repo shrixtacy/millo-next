@@ -1,0 +1,138 @@
+{
+  "sections": {
+    "hero": {
+      "type": "hero",
+      "settings": {
+        "badge_text": "100% Natural · Made in India",
+        "heading": "Ancient Grain.\nModern Fuel.",
+        "subheading": "Healthy millet-based snacks crafted for everyday life. Clean ingredients, sustained energy, zero compromise.",
+        "primary_cta_label": "Shop Now",
+        "primary_cta_link": "shopify:\/\/collections\/all",
+        "secondary_cta_label": "Our Story",
+        "secondary_cta_link": "shopify:\/\/pages\/about",
+        "stat_1_value": "100%",
+        "stat_1_label": "Natural",
+        "stat_2_value": "0",
+        "stat_2_label": "Preservatives",
+        "stat_3_value": "12+",
+        "stat_3_label": "Products"
+      }
+    },
+    "features": {
+      "type": "features",
+      "settings": {
+        "subheading": "Why Millo",
+        "heading": "Goodness in every grain.",
+        "description": "Every Millo product is crafted with intention — clean ingredients, real nutrition, zero compromise."
+      },
+      "blocks": {
+        "block_1": {
+          "type": "feature",
+          "settings": {
+            "stat": "8g+",
+            "title": "High Fiber",
+            "description": "Millet is naturally rich in dietary fiber, supporting gut health and keeping you full longer.",
+            "bg_color": "#2F5D3A",
+            "text_color": "#ffffff",
+            "sub_text_color": "#ffffff",
+            "use_gradient_stat": false,
+            "asset_image": "product-sattu.png"
+          }
+        },
+        "block_2": {
+          "type": "feature",
+          "settings": {
+            "stat": "Low GI",
+            "title": "Sustained Energy",
+            "description": "Low glycemic index grains release energy slowly — no crash, just clean fuel all day.",
+            "bg_color": "#F5E6D3",
+            "text_color": "#1a1a1a",
+            "sub_text_color": "#666666",
+            "use_gradient_stat": true,
+            "asset_image": "product-namkin.png"
+          }
+        },
+        "block_3": {
+          "type": "feature",
+          "settings": {
+            "stat": "0%",
+            "title": "No Preservatives",
+            "description": "Clean label products with zero artificial additives, colors, or preservatives. Just real food.",
+            "bg_color": "#ffffff",
+            "text_color": "#1a1a1a",
+            "sub_text_color": "#666666",
+            "use_gradient_stat": true
+          }
+        },
+        "block_4": {
+          "type": "feature",
+          "settings": {
+            "stat": "70%",
+            "title": "Less Water",
+            "description": "Millets need 70% less water than rice and wheat — one of the most climate-resilient crops on earth.",
+            "bg_color": "rgba(255, 145, 77, 0.1)",
+            "text_color": "#1a1a1a",
+            "sub_text_color": "#666666",
+            "use_gradient_stat": true
+          }
+        }
+      },
+      "block_order": ["block_1", "block_2", "block_3", "block_4"]
+    },
+    "best-sellers": {
+      "type": "best-sellers",
+      "settings": {
+        "heading": "Best Sellers",
+        "subheading": "Clean ingredients, bold flavours — products people keep coming back to.",
+        "banner_heading": "New to Millo?",
+        "banner_subheading": "Try our starter pack — handpicked for first-timers.",
+        "banner_link": "shopify:\/\/collections\/all"
+      }
+    },
+    "trust-bar": {
+      "type": "trust-bar",
+      "blocks": {
+        "item_1": { "type": "marquee_item", "settings": { "text": "Sourced from Indian Farmers" } },
+        "item_2": { "type": "marquee_item", "settings": { "text": "Made in India" } },
+        "item_3": { "type": "marquee_item", "settings": { "text": "Sustainable Crops" } },
+        "item_4": { "type": "marquee_item", "settings": { "text": "No Preservatives" } },
+        "item_5": { "type": "marquee_item", "settings": { "text": "Clean Label" } },
+        "item_6": { "type": "marquee_item", "settings": { "text": "FSSAI Certified" } }
+      },
+      "block_order": ["item_1", "item_2", "item_3", "item_4", "item_5", "item_6"]
+    },
+    "about-preview": {
+      "type": "about-preview",
+      "settings": {
+        "heading": "Rooted in tradition,\nbuilt for today.",
+        "mission_text": "Take Odisha-grown millets from local farms to global shelves.",
+        "founded_year": "2025",
+        "content": "<p>Millo is a millet-based food brand by <strong>Nutriswift Foods Private Limited<\/strong>, created to bring traditional Indian nutrition into modern lifestyles.<\/p><p>We believe the grains our ancestors thrived on deserve a place on today's table — not as a compromise, but as a celebration of clean, powerful nutrition.<\/p><p>Every product is sourced directly from Odisha's millet farmers, processed minimally, and delivered with full transparency.<\/p>",
+        "stat_1_val": "2025",
+        "stat_1_label": "Founded",
+        "stat_2_val": "100%",
+        "stat_2_label": "Natural",
+        "stat_3_val": "Odisha",
+        "stat_3_label": "Sourced From"
+      },
+      "blocks": {
+        "tag_1": { "type": "trust_tag", "settings": { "tag": "\ud83c\udf3e Farmer Sourced" } },
+        "tag_2": { "type": "trust_tag", "settings": { "tag": "\ud83c\uddf0\ud83c\uddf3 Made in India" } },
+        "tag_3": { "type": "trust_tag", "settings": { "tag": "\u267b\ufe0f Sustainable" } },
+        "tag_4": { "type": "trust_tag", "settings": { "tag": "\u2705 No Preservatives" } }
+      },
+      "block_order": ["tag_1", "tag_2", "tag_3", "tag_4"]
+    },
+    "newsletter": {
+      "type": "newsletter",
+      "settings": {
+        "badge_text": "Stay Connected",
+        "heading": "Join the Millo\ncommunity.",
+        "subheading": "Get recipes, nutrition tips, and exclusive offers delivered to your inbox. No spam, ever.",
+        "button_label": "Subscribe",
+        "success_message": "You're in! Welcome to the Millo family."
+      }
+    }
+  },
+  "order": ["hero", "features", "best-sellers", "trust-bar", "about-preview", "newsletter"]
+}
