@@ -1,5 +1,6 @@
 import { getProducts } from "@/lib/shopify";
 import Hero from "@/components/Hero";
+import MobileHome from "@/components/mobile/MobileHome";
 import Features from "@/components/Features";
 import BestSellers from "@/components/BestSellers";
 import About from "@/components/About";
@@ -11,12 +12,18 @@ export default async function HomePage() {
 
   return (
     <>
-      <Hero />
-      <Features />
-      <BestSellers products={products} />
-      <TrustBar />
-      <About />
-      <Newsletter />
+      {/* Mobile layout — full shopping interface */}
+      <MobileHome products={products} />
+
+      {/* Desktop layout */}
+      <div className="hidden lg:block">
+        <Hero />
+        <Features />
+        <BestSellers products={products} />
+        <TrustBar />
+        <About />
+        <Newsletter />
+      </div>
     </>
   );
 }
