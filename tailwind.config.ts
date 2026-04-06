@@ -15,15 +15,25 @@ const config: Config = {
           light: "#3d7a4d",
         },
         orange: {
-          DEFAULT: "#E4572E",
-          dark: "#c44520",
-          light: "#f06a3f",
+          DEFAULT: "#ff914d",
+          dark: "#e07a3a",
+          light: "#ffaa70",
+        },
+        red: {
+          DEFAULT: "#ff3131",
+          dark: "#cc2020",
+          light: "#ff5555",
         },
         cream: {
           DEFAULT: "#F5E6D3",
           dark: "#e8d4bc",
           light: "#faf3ec",
         },
+      },
+      backgroundImage: {
+        "brand-gradient": "linear-gradient(135deg, #ff914d 0%, #ff3131 100%)",
+        "brand-gradient-soft": "linear-gradient(135deg, #ff914d 0%, #ff6b6b 50%, #ff3131 100%)",
+        "hero-gradient": "linear-gradient(135deg, #2F5D3A 0%, #1e3d26 60%, #ff3131 150%)",
       },
       fontFamily: {
         heading: ["var(--font-heading)", "Georgia", "serif"],

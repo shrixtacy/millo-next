@@ -49,7 +49,8 @@ export default function Newsletter() {
               />
               <button
                 type="submit"
-                className="bg-[#2F5D3A] text-white px-7 py-4 rounded-xl font-semibold hover:bg-[#1e3d26] transition-colors whitespace-nowrap"
+                className="text-white px-7 py-4 rounded-xl font-semibold hover:opacity-90 transition-colors whitespace-nowrap"
+                style={{ background: "linear-gradient(135deg, #ff914d, #ff3131)" }}
               >
                 Subscribe
               </button>
