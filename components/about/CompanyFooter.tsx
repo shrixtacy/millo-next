@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 export default function CompanyFooter() {
   return (
@@ -13,13 +14,7 @@ export default function CompanyFooter() {
         >
           {/* Logo */}
           <div className="flex items-center justify-center gap-3 mb-8">
-            <div className="w-10 h-10 bg-[#2F5D3A] rounded-full flex items-center justify-center">
-              <span className="text-[#F5E6D3] font-bold font-heading">M</span>
-            </div>
-            <div className="text-left">
-              <p className="text-white font-bold text-lg font-heading">Millo</p>
-              <p className="text-gray-400 text-xs">by Nutriswift Foods</p>
-            </div>
+            <Image src="/media/brand/millo-png.png" alt="Millo" width={120} height={48} className="h-12 w-auto object-contain" />
           </div>
 
           <h2 className="text-3xl font-bold text-white mb-3">Nutriswift Foods Private Limited</h2>

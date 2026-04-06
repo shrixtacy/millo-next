@@ -1,41 +1,41 @@
 "use client";
 
-import { motion } from "framer-motion";
-
 const badges = [
-  { emoji: "🌾", text: "Sourced from Indian Farmers" },
-  { emoji: "🇮🇳", text: "Made in India" },
-  { emoji: "🌱", text: "Sustainable Crops" },
-  { emoji: "✅", text: "No Preservatives" },
-  { emoji: "💚", text: "Clean Label" },
-  { emoji: "🏆", text: "FSSAI Certified" },
+  "Sourced from Indian Farmers",
+  "Made in India",
+  "Sustainable Crops",
+  "No Preservatives",
+  "Clean Label",
+  "FSSAI Certified",
 ];
+
+const items = [...badges, ...badges, ...badges];
 
 export default function TrustBar() {
   return (
-    <section className="py-16 bg-[#2F5D3A] overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          className="flex flex-wrap justify-center gap-6"
-        >
-          {badges.map((b, i) => (
-            <motion.div
-              key={b.text}
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.08 }}
-              className="flex items-center gap-2 bg-white/10 backdrop-blur-sm px-5 py-3 rounded-full"
-            >
-              <span className="text-lg">{b.emoji}</span>
-              <span className="text-white/90 text-sm font-medium">{b.text}</span>
-            </motion.div>
+    <section className="py-8 bg-[#2F5D3A] overflow-hidden">
+      <div className="relative flex">
+        <div className="flex animate-marquee whitespace-nowrap">
+          {items.map((text, i) => (
+            <span key={i} className="flex items-center flex-shrink-0">
+              <span className="text-white/90 text-xl font-semibold tracking-widest uppercase px-8">
+                {text}
+              </span>
+              <span className="text-[#ff914d] font-bold text-3xl">·</span>
+            </span>
           ))}
-        </motion.div>
+        </div>
       </div>
+
+      <style jsx>{`
+        @keyframes marquee {
+          0% { transform: translateX(0); }
+          100% { transform: translateX(-33.333%); }
+        }
+        .animate-marquee {
+          animation: marquee 25s linear infinite;
+        }
+      `}</style>
     </section>
   );
 }

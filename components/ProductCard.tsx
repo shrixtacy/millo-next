@@ -31,46 +31,56 @@ export default function ProductCard({ product }: Props) {
 
   return (
     <Link href={`/product/${product.handle}`} className="group block">
-      <div className="relative overflow-hidden rounded-2xl bg-[#F5E6D3] aspect-square mb-4">
+      {/* Image */}
+      <div className="relative overflow-hidden rounded-3xl bg-[#F5E6D3] aspect-square mb-5">
         {image ? (
           <Image
             src={image.url}
             alt={image.altText ?? product.title}
             fill
-            className="object-cover transition-transform duration-500 group-hover:scale-105"
+            className="object-cover transition-transform duration-700 group-hover:scale-110"
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
           />
         ) : (
           <div className="absolute inset-0 flex items-center justify-center">
-            <span className="text-4xl font-bold font-heading text-[#2F5D3A]/20">M</span>
+            <span className="text-5xl font-bold font-heading text-[#2F5D3A]/20">M</span>
           </div>
         )}
 
-        {/* Quick add overlay */}
-        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-all duration-300" />
+        {/* Gradient overlay on hover */}
+        <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300" style={{ background: "linear-gradient(to top, rgba(0,0,0,0.3) 0%, transparent 60%)" }} />
+
+        {/* Bestseller badge */}
+        {product.tags.includes("bestseller") && (
+          <div className="absolute top-3 left-3">
+            <span className="text-xs text-white font-semibold px-3 py-1.5 rounded-full shadow-lg" style={{ background: "linear-gradient(135deg, #ff914d, #ff3131)" }}>
+              Bestseller
+            </span>
+          </div>
+        )}
+
+        {/* Add to cart button */}
         <button
           onClick={handleAddToCart}
-          className="absolute bottom-3 right-3 text-white p-3 rounded-full opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-300 shadow-lg"
+          className="absolute bottom-4 right-4 text-white p-3.5 rounded-full opacity-0 group-hover:opacity-100 translate-y-3 group-hover:translate-y-0 transition-all duration-300 shadow-xl"
           style={{ background: "linear-gradient(135deg, #ff914d, #ff3131)" }}
           aria-label={`Add ${product.title} to cart`}
         >
-          <ShoppingBag size={16} />
+          <ShoppingBag size={18} />
         </button>
       </div>
 
+      {/* Info */}
       <div className="px-1">
-        <h3 className="font-semibold text-gray-900 group-hover:text-[#2F5D3A] transition-colors">
+        <h3 className="font-semibold text-gray-900 text-base group-hover:text-[#2F5D3A] transition-colors leading-snug">
           {product.title}
         </h3>
-        <div className="flex items-center justify-between mt-1">
-          <span className="text-[#2F5D3A] font-bold">
+        <p className="text-gray-400 text-sm mt-1 line-clamp-1">{product.description?.slice(0, 60)}</p>
+        <div className="flex items-center justify-between mt-3">
+          <span className="text-[#2F5D3A] font-bold text-lg">
             {formatPrice(price.amount, price.currencyCode)}
           </span>
-          {product.tags.includes("bestseller") && (
-            <span className="text-xs text-white px-2 py-0.5 rounded-full font-medium" style={{ background: "linear-gradient(135deg, #ff914d, #ff3131)" }}>
-              Bestseller
-            </span>
-          )}
+          <span className="text-xs text-gray-400 bg-gray-100 px-2 py-1 rounded-full">In Stock</span>
         </div>
       </div>
     </Link>

@@ -19,22 +19,6 @@ const founders = [
   },
 ];
 
-const team = [
-  { name: "Ankit D.", role: "Operations", initials: "AD" },
-  { name: "Pooja Behera", role: "Product", initials: "PB" },
-  { name: "Ambika Pr.", role: "Technology", initials: "AM" },
-  { name: "Asutosh Sahoo", role: "Supply Chain", initials: "AS" },
-  { name: "Pallabi Mohanty", role: "Technology", initials: "PM" },
-  { name: "Soumya Sahoo", role: "Ex-Alumni", initials: "SS" },
-];
-
-const advisors = [
-  { name: "Jajati Behera", role: "Agro-Biz Expert & Prominent Journalist", initials: "JB" },
-  { name: "ReGeneva", role: "Sustainability & ESG Expert", initials: "RG" },
-  { name: "Surya Kar", role: "Sustainability & ESG Expert", initials: "SK" },
-  { name: "Dhal", role: "Industry Expert", initials: "DH" },
-];
-
 export default function OurTeam() {
   return (
     <section className="py-24 bg-white">
@@ -45,7 +29,7 @@ export default function OurTeam() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <span className="text-[#E4572E] text-sm font-semibold tracking-widest uppercase">
+          <span className="text-sm font-semibold tracking-widest uppercase text-transparent bg-clip-text" style={{ backgroundImage: "linear-gradient(135deg, #ff914d, #ff3131)" }}>
             Our Team
           </span>
           <h2 className="text-4xl font-bold text-gray-900 mt-3">
@@ -53,89 +37,28 @@ export default function OurTeam() {
           </h2>
         </motion.div>
 
-        {/* Founders */}
-        <div className="mb-16">
-          <p className="text-xs font-semibold text-gray-400 uppercase tracking-widest mb-8 text-center">
-            Founding Team
-          </p>
-          <div className="grid md:grid-cols-2 gap-6">
-            {founders.map((f, i) => (
-              <motion.div
-                key={f.name}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-                className="flex gap-5 bg-[#faf9f7] border border-gray-100 rounded-2xl p-7"
-              >
-                <div
-                  className={`w-16 h-16 rounded-2xl flex items-center justify-center text-white font-bold text-xl flex-shrink-0 ${f.color}`}
-                >
-                  {f.initials}
-                </div>
-                <div>
-                  <p className="font-bold text-gray-900 text-lg">{f.name}</p>
-                  <p className="text-[#E4572E] text-sm font-semibold mb-3">{f.role}</p>
-                  <p className="text-gray-500 text-sm leading-relaxed">{f.bio}</p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-
-        {/* Core Team */}
-        <div className="mb-16">
-          <p className="text-xs font-semibold text-gray-400 uppercase tracking-widest mb-8 text-center">
-            Core Team
-          </p>
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
-            {team.map((t, i) => (
-              <motion.div
-                key={t.name}
-                initial={{ opacity: 0, y: 15 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.07 }}
-                className="text-center bg-[#faf9f7] rounded-2xl p-5"
-              >
-                <div className="w-12 h-12 rounded-full bg-[#2F5D3A]/10 text-[#2F5D3A] font-bold flex items-center justify-center mx-auto text-sm">
-                  {t.initials}
-                </div>
-                <p className="font-semibold text-gray-900 text-sm mt-3">{t.name}</p>
-                <p className="text-gray-400 text-xs mt-1">{t.role}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-
-        {/* Advisors */}
-        <div>
-          <p className="text-xs font-semibold text-gray-400 uppercase tracking-widest mb-8 text-center">
-            Mentors & Advisors
-          </p>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            {advisors.map((a, i) => (
-              <motion.div
-                key={a.name}
-                initial={{ opacity: 0, y: 15 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.08 }}
-                className="flex items-center gap-4 bg-[#faf9f7] border border-gray-100 rounded-xl px-5 py-4"
-              >
-                <div className="w-10 h-10 rounded-full bg-[#E4572E]/10 text-[#E4572E] font-bold flex items-center justify-center text-xs flex-shrink-0">
-                  {a.initials}
-                </div>
-                <div>
-                  <p className="font-semibold text-gray-900 text-sm">{a.name}</p>
-                  <p className="text-gray-400 text-xs mt-0.5">{a.role}</p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
+        <div className="grid md:grid-cols-2 gap-6">
+          {founders.map((f, i) => (
+            <motion.div
+              key={f.name}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.1 }}
+              className="flex gap-5 bg-[#faf9f7] border border-gray-100 rounded-2xl p-7"
+            >
+              <div className={`w-16 h-16 rounded-2xl flex items-center justify-center text-white font-bold text-xl flex-shrink-0 ${f.color}`}>
+                {f.initials}
+              </div>
+              <div>
+                <p className="font-bold text-gray-900 text-lg">{f.name}</p>
+                <p className="text-sm font-semibold mb-3 text-transparent bg-clip-text" style={{ backgroundImage: "linear-gradient(135deg, #ff914d, #ff3131)" }}>{f.role}</p>
+                <p className="text-gray-500 text-sm leading-relaxed">{f.bio}</p>
+              </div>
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>
   );
 }
-
