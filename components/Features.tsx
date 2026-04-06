@@ -50,7 +50,7 @@ const features = [
 
 export default function Features() {
   return (
-    <section className="py-24 bg-white">
+    <section className="relative py-24 bg-white" style={{ zIndex: 10 }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -59,7 +59,7 @@ export default function Features() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <span className="text-[#E4572E] text-sm font-semibold tracking-widest uppercase">
+          <span className="text-sm font-semibold tracking-widest uppercase text-transparent bg-clip-text" style={{ backgroundImage: "linear-gradient(135deg, #ff914d, #ff3131)" }}>
             Why Millo
           </span>
           <h2 className="text-4xl font-bold text-gray-900 mt-3">

@@ -18,8 +18,9 @@ export default function AboutHero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <span className="inline-block bg-[#E4572E]/20 text-[#F5E6D3] text-xs font-semibold tracking-widest uppercase px-4 py-2 rounded-full mb-6">
-            Nutriswift Foods Private Limited
+          <span className="inline-block text-[#F5E6D3] text-xs font-semibold tracking-widest uppercase px-4 py-2 rounded-full mb-6"
+            style={{ background: "linear-gradient(135deg, #ff914d40, #ff313140)" }}
+          >            Nutriswift Foods Private Limited
           </span>
           <h1 className="text-5xl sm:text-6xl font-bold text-white mb-6 leading-tight">
             Foods for Health.<br />

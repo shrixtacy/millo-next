@@ -7,6 +7,11 @@
 :root {
   --font-heading: 'Playfair Display', Georgia, serif;
   --font-body: 'Inter', system-ui, sans-serif;
+  --color-green: #2F5D3A;
+  --color-orange: #ff914d;
+  --color-red: #ff3131;
+  --color-cream: #F5E6D3;
+  --gradient-brand: linear-gradient(135deg, #ff914d 0%, #ff3131 100%);
 }
 
 * {
@@ -31,5 +36,14 @@ h1, h2, h3, h4 {
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+  .bg-brand-gradient {
+    background: var(--gradient-brand);
+  }
+  .text-brand-gradient {
+    background: var(--gradient-brand);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
   }
 }

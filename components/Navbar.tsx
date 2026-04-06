@@ -37,7 +37,7 @@ export default function Navbar() {
           </div>
           <span
             className={`text-xl font-bold font-heading tracking-tight transition-colors ${
-              scrolled ? "text-[#2F5D3A]" : "text-white"
+              scrolled ? "text-[#2F5D3A]" : "text-[#2F5D3A]"
             }`}
           >
             Millo
@@ -50,8 +50,8 @@ export default function Navbar() {
             <li key={l.href}>
               <Link
                 href={l.href}
-                className={`text-sm font-medium transition-colors hover:text-[#E4572E] ${
-                  scrolled ? "text-gray-700" : "text-white/90"
+                className={`text-sm font-medium transition-colors hover:text-[#ff914d] ${
+                  scrolled ? "text-gray-700" : "text-gray-800"
                 }`}
               >
                 {l.label}
@@ -69,10 +69,10 @@ export default function Navbar() {
           >
             <ShoppingBag
               size={22}
-              className={scrolled ? "text-[#2F5D3A]" : "text-white"}
+              className={scrolled ? "text-[#2F5D3A]" : "text-gray-800"}
             />
             {totalItems > 0 && (
-              <span className="absolute -top-1 -right-1 w-5 h-5 bg-[#E4572E] text-white text-xs rounded-full flex items-center justify-center font-medium">
+              <span className="absolute -top-1 -right-1 w-5 h-5 text-white text-xs rounded-full flex items-center justify-center font-medium" style={{ background: "linear-gradient(135deg, #ff914d, #ff3131)" }}>
                 {totalItems}
               </span>
             )}
@@ -84,9 +84,9 @@ export default function Navbar() {
             aria-label="Toggle menu"
           >
             {mobileOpen ? (
-              <X size={22} className={scrolled ? "text-gray-800" : "text-white"} />
+              <X size={22} className={scrolled ? "text-gray-800" : "text-gray-800"} />
             ) : (
-              <Menu size={22} className={scrolled ? "text-gray-800" : "text-white"} />
+              <Menu size={22} className={scrolled ? "text-gray-800" : "text-gray-800"} />
             )}
           </button>
         </div>

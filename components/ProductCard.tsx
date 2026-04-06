@@ -50,7 +50,8 @@ export default function ProductCard({ product }: Props) {
         <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-all duration-300" />
         <button
           onClick={handleAddToCart}
-          className="absolute bottom-3 right-3 bg-[#2F5D3A] text-white p-3 rounded-full opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-300 hover:bg-[#1e3d26] shadow-lg"
+          className="absolute bottom-3 right-3 text-white p-3 rounded-full opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-300 shadow-lg"
+          style={{ background: "linear-gradient(135deg, #ff914d, #ff3131)" }}
           aria-label={`Add ${product.title} to cart`}
         >
           <ShoppingBag size={16} />
@@ -66,7 +67,7 @@ export default function ProductCard({ product }: Props) {
             {formatPrice(price.amount, price.currencyCode)}
           </span>
           {product.tags.includes("bestseller") && (
-            <span className="text-xs bg-[#E4572E]/10 text-[#E4572E] px-2 py-0.5 rounded-full font-medium">
+            <span className="text-xs text-white px-2 py-0.5 rounded-full font-medium" style={{ background: "linear-gradient(135deg, #ff914d, #ff3131)" }}>
               Bestseller
             </span>
           )}

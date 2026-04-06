@@ -133,7 +133,8 @@ export default function CartDrawer() {
                 <p className="text-xs text-gray-400">Shipping & taxes calculated at checkout</p>
                 <button
                   onClick={handleCheckout}
-                  className="w-full bg-[#2F5D3A] text-white py-4 rounded-xl font-semibold hover:bg-[#1e3d26] transition-colors"
+                  className="w-full text-white py-4 rounded-xl font-semibold hover:opacity-90 transition-all"
+                  style={{ background: "linear-gradient(135deg, #ff914d, #ff3131)" }}
                 >
                   Checkout
                 </button>

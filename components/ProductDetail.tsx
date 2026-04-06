@@ -180,7 +180,8 @@ export default function ProductDetail({ product }: Props) {
               <button
                 onClick={handleBuyNow}
                 disabled={buyLoading}
-                className="flex-1 bg-[#E4572E] text-white py-4 rounded-xl font-semibold hover:bg-[#c44520] transition-all disabled:opacity-60"
+                className="flex-1 text-white py-4 rounded-xl font-semibold hover:opacity-90 transition-all disabled:opacity-60"
+                style={{ background: "linear-gradient(135deg, #ff914d, #ff3131)" }}
               >
                 {buyLoading ? "Redirecting..." : "Buy Now"}
               </button>

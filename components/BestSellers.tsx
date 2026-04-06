@@ -23,7 +23,7 @@ export default function BestSellers({ products }: Props) {
           className="flex flex-col sm:flex-row sm:items-end justify-between mb-12 gap-4"
         >
           <div>
-            <span className="text-[#E4572E] text-sm font-semibold tracking-widest uppercase">
+            <span className="text-sm font-semibold tracking-widest uppercase text-transparent bg-clip-text" style={{ backgroundImage: "linear-gradient(135deg, #ff914d, #ff3131)" }}>
               Our Products
             </span>
             <h2 className="text-4xl font-bold text-gray-900 mt-2">Best Sellers</h2>
