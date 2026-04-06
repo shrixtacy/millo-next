@@ -35,7 +35,7 @@ const advisors = [
   { name: "Dhal", role: "Industry Expert", initials: "DH" },
 ];
 
-function Avatar({ initials, color }: { initials: string; color?: string }) {
+function _Avatar({ initials, color }: { initials: string; color?: string }) {
   return (
     <div
       className={`w-14 h-14 rounded-full flex items-center justify-center text-white font-bold text-lg flex-shrink-0 ${color ?? "bg-gray-400"}`}
