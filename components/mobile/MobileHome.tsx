@@ -1,9 +1,10 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ShoppingBag } from "lucide-react";
+import { motion } from "framer-motion";
 import { ShopifyProduct, formatPrice } from "@/lib/shopify";
 import { useCart } from "@/context/CartContext";
 
@@ -13,6 +14,14 @@ const categories = [
   { label: "Sattu Mix", href: "/shop", img: "/media/products/sattu.png", bg: "bg-[#2F5D3A]/10" },
   { label: "New", href: "/shop", img: "/media/products/namkin.png", bg: "bg-[#ff3131]/10" },
   { label: "Bestsellers", href: "/shop", img: "/media/products/sattu.png", bg: "bg-[#F5E6D3]" },
+];
+
+const bannerSlides = [
+  { key: "slide1", hasProducts: true, fullImg: null },
+  { key: "slide2", hasProducts: false, fullImg: "/media/brand/milo_2_800x800.webp" },
+  { key: "slide3", hasProducts: false, fullImg: "/media/brand/Gemini_Generated_Image_7dce937dce937dce.png" },
+  { key: "slide4", hasProducts: false, fullImg: "/media/brand/Gemini_Generated_Image_t1i5vst1i5vst1i5.png" },
+  { key: "slide5", hasProducts: false, fullImg: "/media/brand/Gemini_Generated_Image_qkcqiaqkcqiaqkcq.png" },
 ];
 
 interface Props {
@@ -80,44 +89,71 @@ function MobileProductCard({ product }: { product: ShopifyProduct }) {
 }
 
 export default function MobileHome({ products }: Props) {
+  const [current, setCurrent] = useState(0);
+
+  useEffect(() => {
+    const t = setInterval(() => setCurrent((c) => (c + 1) % bannerSlides.length), 4000);
+    return () => clearInterval(t);
+  }, []);
+
   return (
     <div className="lg:hidden bg-[#faf9f7] min-h-screen">
 
-      {/* Hero banner */}
-      <div className="relative overflow-hidden" style={{ background: "linear-gradient(135deg, #2F5D3A 0%, #1e3d26 100%)" }}>
-        {/* millo-bg2 as white tinted background */}
-        <div className="absolute inset-0">
-          <Image src="/media/hero/millo-bg2.png" alt="" fill className="object-cover object-center" style={{ filter: "brightness(0) invert(1)", opacity: 0.15 }} />
-        </div>
-        <div className="relative flex items-end justify-between px-5 pt-20 pb-6 gap-2">
-          <div className="flex-1">
-            <span className="inline-block text-[10px] font-bold uppercase tracking-widest text-white px-3 py-1 rounded-full mb-3 whitespace-nowrap" style={{ background: "linear-gradient(135deg, #ff914d, #ff3131)" }}>
-              100% Natural · Made in India
-            </span>
-            <h1 className="text-2xl font-bold text-white leading-tight mb-2">
-              Ancient Grain.<br />
-              <span style={{ backgroundImage: "linear-gradient(135deg, #ff914d, #ff3131)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
-                Modern Fuel.
-              </span>
-            </h1>
-            <p className="text-white/60 text-xs mb-4">Clean millet snacks for everyday life.</p>
-            <Link
-              href="/shop"
-              className="inline-flex items-center gap-2 text-white text-xs font-semibold px-4 py-2 rounded-full"
-              style={{ background: "linear-gradient(135deg, #ff914d, #ff3131)" }}
-            >
-              Shop Now →
-            </Link>
-          </div>
-          {/* Both products side by side — overflow upward via z-index */}
-          <div className="flex items-end flex-shrink-0 relative" style={{ zIndex: 10 }}>
-            <div className="relative w-24 h-36" style={{ marginRight: "-8px" }}>
-              <Image src="/media/hero/namkin.png" alt="Millo Namkeen" fill className="object-contain drop-shadow-2xl" style={{ transform: "rotate(-8deg)" }} />
-            </div>
-            <div className="relative w-28 h-40">
-              <Image src="/media/hero/sattu.png" alt="Millo Sattu" fill className="object-contain drop-shadow-2xl" />
-            </div>
-          </div>
+      {/* Hero carousel — fixed height 260px */}
+      <div className="relative overflow-hidden" style={{ height: "260px" }}>
+        {bannerSlides.map((slide, i) => (
+          <Link
+            key={slide.key}
+            href="/shop"
+            className="absolute inset-0 transition-opacity duration-700"
+            style={{ opacity: current === i ? 1 : 0, zIndex: current === i ? 1 : 0 }}
+          >
+            {slide.fullImg ? (
+              /* Pure image slide */
+              <Image src={slide.fullImg} alt="Millo Products" fill className="object-cover object-center" priority />
+            ) : (
+              /* Branded text slide */
+              <div className="absolute inset-0" style={{ background: "linear-gradient(135deg, #2F5D3A 0%, #1e3d26 100%)" }}>
+                <div className="absolute inset-0">
+                  <Image src="/media/hero/millo-bg2.png" alt="" fill className="object-cover object-center" style={{ filter: "brightness(0) invert(1)", opacity: 0.15 }} />
+                </div>
+                <div className="relative flex items-end justify-between px-5 pt-20 pb-6 gap-2 h-full z-10">
+                  <div className="flex-1">
+                    <span className="inline-block text-[10px] font-bold uppercase tracking-widest text-white px-3 py-1 rounded-full mb-3 whitespace-nowrap" style={{ background: "rgba(255,255,255,0.2)" }}>
+                      100% Natural · Made in India
+                    </span>
+                    <h1 className="text-2xl font-bold text-white leading-tight mb-2">
+                      Ancient Grain.<br />
+                      <span style={{ backgroundImage: "linear-gradient(135deg, #fff 0%, rgba(255,255,255,0.75) 100%)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
+                        Modern Fuel.
+                      </span>
+                    </h1>
+                    <p className="text-white/60 text-xs">Clean millet snacks for everyday life.</p>
+                  </div>
+                  <div className="flex items-end flex-shrink-0 relative" style={{ zIndex: 10 }}>
+                    <div className="relative w-24 h-36" style={{ marginRight: "-8px" }}>
+                      <Image src="/media/hero/namkin.png" alt="Millo Namkeen" fill className="object-contain drop-shadow-2xl" style={{ transform: "rotate(-8deg)" }} />
+                    </div>
+                    <div className="relative w-28 h-40">
+                      <Image src="/media/hero/sattu.png" alt="Millo Sattu" fill className="object-contain drop-shadow-2xl" />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
+          </Link>
+        ))}
+
+        {/* Dot indicators */}
+        <div className="absolute bottom-3 left-5 flex gap-1.5 z-10">
+          {bannerSlides.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => setCurrent(i)}
+              className="rounded-full transition-all duration-300"
+              style={{ width: current === i ? "20px" : "6px", height: "6px", background: current === i ? "white" : "rgba(255,255,255,0.4)" }}
+            />
+          ))}
         </div>
       </div>
 
@@ -181,12 +217,7 @@ export default function MobileHome({ products }: Props) {
         ) : (
           <div className="grid grid-cols-2 gap-3">
             {products.slice(0, 6).map((product, i) => (
-              <motion.div
-                key={product.id}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: i * 0.08 }}
-              >
+              <motion.div key={product.id} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.08 }}>
                 <MobileProductCard product={product} />
               </motion.div>
             ))}
@@ -194,7 +225,7 @@ export default function MobileHome({ products }: Props) {
         )}
       </div>
 
-      {/* Why Millo strip */}
+      {/* Why Millo */}
       <div className="mx-4 mb-4 rounded-2xl bg-[#2F5D3A] p-5">
         <p className="text-white font-bold text-base mb-3">Why Millo?</p>
         <div className="grid grid-cols-2 gap-2">
