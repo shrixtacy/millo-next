@@ -40,14 +40,11 @@ export default function CompanyFooter() {
           </div>
 
           <div className="flex flex-col sm:flex-row justify-center gap-6 text-sm text-gray-400 mb-10">
-            <a href="tel:+918144301610" className="hover:text-white transition-colors">
-              +91-8144301610
-            </a>
             <a href="tel:+919668667078" className="hover:text-white transition-colors">
               +91-9668667078
             </a>
-            <a href="mailto:nutriswiftfoods@gmail.com" className="hover:text-[#E4572E] transition-colors">
-              nutriswiftfoods@gmail.com
+            <a href="mailto:hello@millo.life" className="hover:text-[#E4572E] transition-colors">
+              hello@millo.life
             </a>
           </div>
 

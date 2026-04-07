@@ -6,6 +6,7 @@ import Navbar from "@/components/Navbar";
 import CartDrawer from "@/components/CartDrawer";
 import Footer from "@/components/Footer";
 import MobileBottomNav from "@/components/mobile/MobileBottomNav";
+import WhatsAppButton from "@/components/WhatsAppButton";
 
 const dmSerif = DM_Serif_Display({
   subsets: ["latin"],
@@ -46,7 +47,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <CartDrawer />
           <main className="pb-16 lg:pb-0">{children}</main>
           <Footer />
+          <WhatsAppButton />
           <MobileBottomNav />
+          <WhatsAppButton />
         </CartProvider>
       </body>
     </html>
