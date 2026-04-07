@@ -24,10 +24,11 @@ function MobileProductCard({ product }: { product: ShopifyProduct }) {
   const image = product.images.edges[0]?.node;
   const variant = product.variants.edges[0]?.node;
   const price = product.priceRange.minVariantPrice;
+  const inStock = product.availableForSale;
 
   function handleAdd(e: React.MouseEvent) {
     e.preventDefault();
-    if (!variant) return;
+    if (!variant || !inStock) return;
     addItem({
       variantId: variant.id,
       productId: product.id,
@@ -39,8 +40,8 @@ function MobileProductCard({ product }: { product: ShopifyProduct }) {
   }
 
   return (
-    <Link href={`/product/${product.handle}`} className="block bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 active:scale-95 transition-transform">
-      <div className="relative aspect-square bg-[#F5E6D3]">
+    <Link href={`/product/${product.handle}`} className={`block bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 active:scale-95 transition-transform ${!inStock ? "pointer-events-none" : ""}`}>
+      <div className={`relative aspect-square bg-[#F5E6D3] ${!inStock ? "opacity-50" : ""}`}>
         {image ? (
           <Image src={image.url} alt={image.altText ?? product.title} fill className="object-cover" sizes="50vw" />
         ) : (
@@ -48,7 +49,12 @@ function MobileProductCard({ product }: { product: ShopifyProduct }) {
             <span className="text-3xl font-bold text-[#2F5D3A]/20">M</span>
           </div>
         )}
-        {product.tags.includes("bestseller") && (
+        {!inStock && (
+          <div className="absolute inset-0 bg-white/60 flex items-center justify-center">
+            <span className="bg-gray-800 text-white text-[10px] font-bold px-3 py-1 rounded-full">Out of Stock</span>
+          </div>
+        )}
+        {product.tags.includes("bestseller") && inStock && (
           <span className="absolute top-2 left-2 text-[10px] text-white font-bold px-2 py-0.5 rounded-full" style={{ background: "linear-gradient(135deg, #ff914d, #ff3131)" }}>
             Hot
           </span>
@@ -60,7 +66,8 @@ function MobileProductCard({ product }: { product: ShopifyProduct }) {
           <span className="text-sm font-bold text-[#2F5D3A]">{formatPrice(price.amount, price.currencyCode)}</span>
           <button
             onClick={handleAdd}
-            className="w-8 h-8 rounded-full flex items-center justify-center text-white shadow-md"
+            disabled={!inStock}
+            className="w-8 h-8 rounded-full flex items-center justify-center text-white shadow-md disabled:opacity-40"
             style={{ background: "linear-gradient(135deg, #ff914d, #ff3131)" }}
             aria-label="Add to cart"
           >
@@ -78,31 +85,38 @@ export default function MobileHome({ products }: Props) {
 
       {/* Hero banner */}
       <div className="relative overflow-hidden" style={{ background: "linear-gradient(135deg, #2F5D3A 0%, #1e3d26 100%)" }}>
-        <div className="absolute inset-0 opacity-10">
-          <Image src="/media/hero/millo-bg2.png" alt="" fill className="object-cover object-center" />
+        {/* millo-bg2 as white tinted background */}
+        <div className="absolute inset-0">
+          <Image src="/media/hero/millo-bg2.png" alt="" fill className="object-cover object-center" style={{ filter: "brightness(0) invert(1)", opacity: 0.15 }} />
         </div>
-        <div className="relative flex items-center justify-between px-5 pt-20 pb-8">
-          <div className="flex-1 pr-4">
-            <span className="inline-block text-[10px] font-bold uppercase tracking-widest text-white px-3 py-1 rounded-full mb-3" style={{ background: "linear-gradient(135deg, #ff914d, #ff3131)" }}>
+        <div className="relative flex items-end justify-between px-5 pt-20 pb-6 gap-2">
+          <div className="flex-1">
+            <span className="inline-block text-[10px] font-bold uppercase tracking-widest text-white px-3 py-1 rounded-full mb-3 whitespace-nowrap" style={{ background: "linear-gradient(135deg, #ff914d, #ff3131)" }}>
               100% Natural · Made in India
             </span>
-            <h1 className="text-3xl font-bold text-white leading-tight mb-2">
+            <h1 className="text-2xl font-bold text-white leading-tight mb-2">
               Ancient Grain.<br />
               <span style={{ backgroundImage: "linear-gradient(135deg, #ff914d, #ff3131)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
                 Modern Fuel.
               </span>
             </h1>
-            <p className="text-white/60 text-sm mb-4">Clean millet snacks for everyday life.</p>
+            <p className="text-white/60 text-xs mb-4">Clean millet snacks for everyday life.</p>
             <Link
               href="/shop"
-              className="inline-flex items-center gap-2 text-white text-sm font-semibold px-5 py-2.5 rounded-full"
+              className="inline-flex items-center gap-2 text-white text-xs font-semibold px-4 py-2 rounded-full"
               style={{ background: "linear-gradient(135deg, #ff914d, #ff3131)" }}
             >
               Shop Now →
             </Link>
           </div>
-          <div className="relative w-32 h-40 flex-shrink-0">
-            <Image src="/media/hero/sattu.png" alt="Millo Sattu" fill className="object-contain drop-shadow-2xl" />
+          {/* Both products side by side — overflow upward via z-index */}
+          <div className="flex items-end flex-shrink-0 relative" style={{ zIndex: 10 }}>
+            <div className="relative w-24 h-36" style={{ marginRight: "-8px" }}>
+              <Image src="/media/hero/namkin.png" alt="Millo Namkeen" fill className="object-contain drop-shadow-2xl" style={{ transform: "rotate(-8deg)" }} />
+            </div>
+            <div className="relative w-28 h-40">
+              <Image src="/media/hero/sattu.png" alt="Millo Sattu" fill className="object-contain drop-shadow-2xl" />
+            </div>
           </div>
         </div>
       </div>
