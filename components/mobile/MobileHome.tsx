@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ShoppingBag } from "lucide-react";
@@ -90,17 +90,37 @@ function MobileProductCard({ product }: { product: ShopifyProduct }) {
 
 export default function MobileHome({ products }: Props) {
   const [current, setCurrent] = useState(0);
+  const touchStartX = useRef(0);
+  const touchEndX = useRef(0);
 
   useEffect(() => {
     const t = setInterval(() => setCurrent((c) => (c + 1) % bannerSlides.length), 4000);
     return () => clearInterval(t);
   }, []);
 
+  function handleTouchStart(e: React.TouchEvent) {
+    touchStartX.current = e.touches[0].clientX;
+  }
+
+  function handleTouchEnd(e: React.TouchEvent) {
+    touchEndX.current = e.changedTouches[0].clientX;
+    const diff = touchStartX.current - touchEndX.current;
+    if (Math.abs(diff) > 40) {
+      if (diff > 0) setCurrent((c) => (c + 1) % bannerSlides.length);
+      else setCurrent((c) => (c - 1 + bannerSlides.length) % bannerSlides.length);
+    }
+  }
+
   return (
     <div className="lg:hidden bg-[#faf9f7] min-h-screen">
 
       {/* Hero carousel — fixed height 260px */}
-      <div className="relative overflow-hidden" style={{ height: "260px" }}>
+      <div
+        className="relative overflow-hidden"
+        style={{ height: "260px" }}
+        onTouchStart={handleTouchStart}
+        onTouchEnd={handleTouchEnd}
+      >
         {bannerSlides.map((slide, i) => (
           <Link
             key={slide.key}
@@ -130,12 +150,15 @@ export default function MobileHome({ products }: Props) {
                     </h1>
                     <p className="text-white/60 text-xs">Clean millet snacks for everyday life.</p>
                   </div>
-                  <div className="flex items-end flex-shrink-0 relative" style={{ zIndex: 10 }}>
-                    <div className="relative w-20 h-28" style={{ marginRight: "-8px" }}>
-                      <Image src="/media/hero/namkin.png" alt="Millo Namkeen" fill className="object-contain drop-shadow-2xl" style={{ transform: "rotate(-8deg)" }} />
+                  {/* Products — namkeen front-left, sattu behind-right, both within frame */}
+                  <div className="relative flex-shrink-0" style={{ width: "160px", height: "180px" }}>
+                    {/* Sattu — behind, shifted right */}
+                    <div className="absolute right-0 bottom-0 w-24 h-28" style={{ zIndex: 1 }}>
+                      <Image src="/media/hero/sattu.png" alt="Millo Sattu" fill className="object-contain drop-shadow-xl" />
                     </div>
-                    <div className="relative w-24 h-32">
-                      <Image src="/media/hero/sattu.png" alt="Millo Sattu" fill className="object-contain drop-shadow-2xl" />
+                    {/* Namkeen — front, shifted left */}
+                    <div className="absolute left-0 bottom-0 w-20 h-28" style={{ zIndex: 2, transform: "rotate(-8deg)" }}>
+                      <Image src="/media/hero/namkin.png" alt="Millo Namkeen" fill className="object-contain drop-shadow-2xl" />
                     </div>
                   </div>
                 </div>
