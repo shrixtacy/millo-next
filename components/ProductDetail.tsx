@@ -30,6 +30,7 @@ export default function ProductDetail({ product }: Props) {
   const selectedVariant = variants[selectedVariantIdx];
   const price = selectedVariant?.price.amount ?? product.priceRange.minVariantPrice.amount;
   const currency = product.priceRange.minVariantPrice.currencyCode;
+  const inStock = selectedVariant?.availableForSale ?? product.availableForSale;
 
   function handleAddToCart() {
     if (!selectedVariant) return;
@@ -172,18 +173,19 @@ export default function ProductDetail({ product }: Props) {
             <div className="flex flex-col sm:flex-row gap-3 mb-8">
               <button
                 onClick={handleAddToCart}
-                className="flex-1 flex items-center justify-center gap-2 border-2 border-[#2F5D3A] text-[#2F5D3A] py-4 rounded-xl font-semibold hover:bg-[#2F5D3A] hover:text-white transition-all"
+                disabled={!inStock}
+                className="flex-1 flex items-center justify-center gap-2 border-2 border-[#2F5D3A] text-[#2F5D3A] py-4 rounded-xl font-semibold hover:bg-[#2F5D3A] hover:text-white transition-all disabled:opacity-40 disabled:cursor-not-allowed"
               >
                 <ShoppingBag size={18} />
-                Add to Cart
+                {inStock ? "Add to Cart" : "Out of Stock"}
               </button>
               <button
                 onClick={handleBuyNow}
-                disabled={buyLoading}
-                className="flex-1 text-white py-4 rounded-xl font-semibold hover:opacity-90 transition-all disabled:opacity-60"
+                disabled={buyLoading || !inStock}
+                className="flex-1 text-white py-4 rounded-xl font-semibold hover:opacity-90 transition-all disabled:opacity-40 disabled:cursor-not-allowed"
                 style={{ background: "linear-gradient(135deg, #ff914d, #ff3131)" }}
               >
-                {buyLoading ? "Redirecting..." : "Buy Now"}
+                {buyLoading ? "Redirecting..." : inStock ? "Buy Now" : "Unavailable"}
               </button>
             </div>
 

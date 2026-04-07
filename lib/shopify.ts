@@ -27,11 +27,12 @@ export interface ShopifyProduct {
   handle: string;
   description: string;
   descriptionHtml: string;
+  availableForSale: boolean;
   priceRange: {
     minVariantPrice: { amount: string; currencyCode: string };
   };
   images: { edges: { node: { url: string; altText: string | null } }[] };
-  variants: { edges: { node: { id: string; title: string; price: { amount: string } } }[] };
+  variants: { edges: { node: { id: string; title: string; availableForSale: boolean; price: { amount: string } } }[] };
   tags: string[];
 }
 
@@ -47,10 +48,10 @@ const PRODUCTS_QUERY = `
     products(first: $first) {
       edges {
         node {
-          id title handle description descriptionHtml tags
+          id title handle description descriptionHtml tags availableForSale
           priceRange { minVariantPrice { amount currencyCode } }
           images(first: 3) { edges { node { url altText } } }
-          variants(first: 5) { edges { node { id title price { amount } } } }
+          variants(first: 5) { edges { node { id title availableForSale price { amount } } } }
         }
       }
     }
@@ -60,10 +61,10 @@ const PRODUCTS_QUERY = `
 const PRODUCT_BY_HANDLE_QUERY = `
   query ProductByHandle($handle: String!) {
     productByHandle(handle: $handle) {
-      id title handle description descriptionHtml tags
+      id title handle description descriptionHtml tags availableForSale
       priceRange { minVariantPrice { amount currencyCode } }
       images(first: 6) { edges { node { url altText } } }
-      variants(first: 10) { edges { node { id title price { amount } } } }
+      variants(first: 10) { edges { node { id title availableForSale price { amount } } } }
     }
   }
 `;
@@ -84,7 +85,9 @@ export async function getProducts(first = 12): Promise<ShopifyProduct[]> {
     PRODUCTS_QUERY,
     { first }
   );
-  return data.products.edges.map((e) => e.node);
+  const products = data.products.edges.map((e) => e.node);
+  // Available products first, out of stock pushed to end
+  return products.sort((a, b) => (b.availableForSale ? 1 : 0) - (a.availableForSale ? 1 : 0));
 }
 
 export async function getProductByHandle(handle: string): Promise<ShopifyProduct | null> {
