@@ -90,7 +90,7 @@ export default function ProductCard({ product }: Props) {
           <span className="text-[#2F5D3A] font-bold text-lg">
             {formatPrice(price.amount, price.currencyCode)}
           </span>
-          <span className="text-xs text-gray-400 bg-gray-100 px-2 py-1 rounded-full">
+          <span className={`text-xs font-medium px-2 py-1 rounded-full ${inStock ? "bg-green-50 text-green-600" : "bg-gray-100 text-gray-400"}`}>
             {inStock ? "In Stock" : "Out of Stock"}
           </span>
         </div>

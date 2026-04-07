@@ -142,7 +142,7 @@ export default function MobileHome({ products }: Props) {
         <div className="rounded-2xl overflow-hidden relative" style={{ background: "linear-gradient(135deg, #ff914d 0%, #ff3131 100%)" }}>
           <div className="flex items-center justify-between px-5 py-4">
             <div>
-              <p className="text-white font-bold text-lg leading-tight">Free Shipping<br />on 1st Order</p>
+              <p className="text-white font-bold text-lg leading-tight">Try our<br />Products Now</p>
               <Link href="/shop" className="inline-block mt-2 bg-white text-[#ff3131] text-xs font-bold px-4 py-1.5 rounded-full">
                 Order Now →
               </Link>

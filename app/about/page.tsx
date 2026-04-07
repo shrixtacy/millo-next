@@ -5,7 +5,6 @@ import TheOpportunity from "@/components/about/TheOpportunity";
 import OurSolution from "@/components/about/OurSolution";
 import WhyOdisha from "@/components/about/WhyOdisha";
 import SocialImpact from "@/components/about/SocialImpact";
-import OurTeam from "@/components/about/OurTeam";
 import CompanyFooter from "@/components/about/CompanyFooter";
 
 export const metadata: Metadata = {
@@ -23,7 +22,6 @@ export default function AboutPage() {
       <OurSolution />
       <WhyOdisha />
       <SocialImpact />
-      <OurTeam />
       <CompanyFooter />
     </div>
   );
