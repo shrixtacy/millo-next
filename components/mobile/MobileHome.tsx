@@ -137,7 +137,7 @@ export default function MobileHome({ products }: Props) {
                 <div className="absolute inset-0">
                   <Image src="/media/hero/millo-bg2.png" alt="" fill className="object-cover object-center" style={{ filter: "brightness(0) invert(1)", opacity: 0.15 }} />
                 </div>
-                <div className="relative flex items-center justify-between px-5 pt-16 pb-4 gap-2 h-full z-10">
+                <div className="relative flex items-center justify-between px-5 pt-6 pb-4 gap-2 h-full z-10">
                   <div className="flex-1">
                     <span className="inline-block text-[10px] font-bold uppercase tracking-widest text-white px-3 py-1 rounded-full mb-3 whitespace-nowrap" style={{ background: "rgba(255,255,255,0.2)" }}>
                       100% Natural · Made in India
