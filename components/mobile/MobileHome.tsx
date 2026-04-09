@@ -7,6 +7,7 @@ import { ShoppingBag } from "lucide-react";
 import { motion } from "framer-motion";
 import { ShopifyProduct, formatPrice } from "@/lib/shopify";
 import { useCart } from "@/context/CartContext";
+import FreeShippingBar from "./FreeShippingBar";
 
 const categories = [
   { label: "All", href: "/shop", img: "/media/products/namkin.png", bg: "bg-[#F5E6D3]" },
@@ -33,6 +34,8 @@ function MobileProductCard({ product }: { product: ShopifyProduct }) {
   const image = product.images.edges[0]?.node;
   const variant = product.variants.edges[0]?.node;
   const price = product.priceRange.minVariantPrice;
+  const compareAtPrice = variant?.compareAtPrice;
+  const hasDiscount = compareAtPrice && parseFloat(compareAtPrice.amount) > parseFloat(variant?.price.amount ?? "0");
   const inStock = product.availableForSale;
 
   function handleAdd(e: React.MouseEvent) {
@@ -72,7 +75,12 @@ function MobileProductCard({ product }: { product: ShopifyProduct }) {
       <div className="p-3">
         <p className="text-sm font-semibold text-gray-900 leading-tight line-clamp-2">{product.title}</p>
         <div className="flex items-center justify-between mt-2">
-          <span className="text-sm font-bold text-[#2F5D3A]">{formatPrice(price.amount, price.currencyCode)}</span>
+          <div>
+            <span className="text-sm font-bold text-[#2F5D3A]">{formatPrice(price.amount, price.currencyCode)}</span>
+            {hasDiscount && compareAtPrice && (
+              <span className="text-xs text-gray-400 line-through ml-1">{formatPrice(compareAtPrice.amount, price.currencyCode)}</span>
+            )}
+          </div>
           <button
             onClick={handleAdd}
             disabled={!inStock}
@@ -181,7 +189,7 @@ export default function MobileHome({ products }: Props) {
       </div>
 
       {/* Category circles */}
-      <div className="bg-white px-4 py-4 border-b border-gray-100">
+      <FreeShippingBar />      <div className="bg-white px-4 py-4 border-b border-gray-100">
         <div className="flex gap-4 overflow-x-auto scrollbar-hide pb-1">
           {categories.map((c) => (
             <Link key={c.label} href={c.href} className="flex flex-col items-center gap-2 flex-shrink-0">

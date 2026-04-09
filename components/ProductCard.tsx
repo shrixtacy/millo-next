@@ -15,6 +15,8 @@ export default function ProductCard({ product }: Props) {
   const image = product.images.edges[0]?.node;
   const variant = product.variants.edges[0]?.node;
   const price = product.priceRange.minVariantPrice;
+  const compareAtPrice = variant?.compareAtPrice;
+  const hasDiscount = compareAtPrice && parseFloat(compareAtPrice.amount) > parseFloat(variant.price.amount);
   const inStock = product.availableForSale;
 
   function handleAddToCart(e: React.MouseEvent) {
@@ -87,9 +89,16 @@ export default function ProductCard({ product }: Props) {
         </h3>
         <p className="text-gray-400 text-sm mt-1 line-clamp-1">{product.description?.slice(0, 60)}</p>
         <div className="flex items-center justify-between mt-3">
-          <span className="text-[#2F5D3A] font-bold text-lg">
-            {formatPrice(price.amount, price.currencyCode)}
-          </span>
+          <div className="flex items-center gap-2">
+            <span className="text-[#2F5D3A] font-bold text-lg">
+              {formatPrice(price.amount, price.currencyCode)}
+            </span>
+            {hasDiscount && compareAtPrice && (
+              <span className="text-gray-400 text-sm line-through">
+                {formatPrice(compareAtPrice.amount, price.currencyCode)}
+              </span>
+            )}
+          </div>
           <span className={`text-xs font-medium px-2 py-1 rounded-full ${inStock ? "bg-green-50 text-green-600" : "bg-gray-100 text-gray-400"}`}>
             {inStock ? "In Stock" : "Out of Stock"}
           </span>

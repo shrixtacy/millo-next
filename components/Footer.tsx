@@ -133,9 +133,13 @@ export default function Footer() {
             © {new Date().getFullYear()} Millo by Nutriswift Foods Pvt. Ltd. · CIN: U46909OD2025PTC049760
           </p>
           <div className="flex gap-6">
-            {["Privacy Policy", "Terms of Service"].map((l) => (
-              <a key={l} href="#" className="text-xs text-gray-600 hover:text-white transition-colors">
-                {l}
+            {[
+              { label: "Privacy Policy", href: "/privacy-policy" },
+              { label: "Terms of Service", href: "/terms" },
+              { label: "Refund Policy", href: "/refund-policy" },
+            ].map((l) => (
+              <a key={l.label} href={l.href} className="text-xs text-gray-600 hover:text-white transition-colors">
+                {l.label}
               </a>
             ))}
           </div>
