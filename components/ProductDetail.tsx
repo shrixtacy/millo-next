@@ -30,6 +30,8 @@ export default function ProductDetail({ product }: Props) {
   const selectedVariant = variants[selectedVariantIdx];
   const price = selectedVariant?.price.amount ?? product.priceRange.minVariantPrice.amount;
   const currency = product.priceRange.minVariantPrice.currencyCode;
+  const compareAtPrice = selectedVariant?.compareAtPrice;
+  const hasDiscount = compareAtPrice && parseFloat(compareAtPrice.amount) > parseFloat(price);
   const inStock = selectedVariant?.availableForSale ?? product.availableForSale;
 
   function handleAddToCart() {
@@ -123,9 +125,21 @@ export default function ProductDetail({ product }: Props) {
 
             <h1 className="text-4xl font-bold text-gray-900 mb-3">{product.title}</h1>
 
-            <p className="text-3xl font-bold text-[#2F5D3A] mb-6">
-              {formatPrice(price, currency)}
-            </p>
+            <div className="flex items-center gap-3 mb-6">
+              <p className="text-3xl font-bold text-[#2F5D3A]">
+                {formatPrice(price, currency)}
+              </p>
+              {hasDiscount && compareAtPrice && (
+                <>
+                  <span className="text-xl text-gray-400 line-through">
+                    {formatPrice(compareAtPrice.amount, currency)}
+                  </span>
+                  <span className="text-sm font-bold text-white px-2 py-1 rounded-full" style={{ background: "linear-gradient(135deg, #ff914d, #ff3131)" }}>
+                    {Math.round((1 - parseFloat(price) / parseFloat(compareAtPrice.amount)) * 100)}% OFF
+                  </span>
+                </>
+              )}
+            </div>
 
             {/* Variants */}
             {variants.length > 1 && (

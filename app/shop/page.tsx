@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import { getProducts } from "@/lib/shopify";
 import ProductCard from "@/components/ProductCard";
+import FreeShippingBar from "@/components/mobile/FreeShippingBar";
 
 export const metadata: Metadata = {
   title: "Shop",
@@ -12,6 +13,7 @@ export default async function ShopPage() {
 
   return (
     <div className="min-h-screen bg-[#faf9f7] pt-24">
+      <FreeShippingBar />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         {/* Header */}
         <div className="mb-12">
