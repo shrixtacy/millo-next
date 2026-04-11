@@ -4,7 +4,7 @@ import MobileHome from "@/components/mobile/MobileHome";
 import Features from "@/components/Features";
 import BestSellers from "@/components/BestSellers";
 import About from "@/components/About";
-import TrustBar from "@/components/TrustBar";
+import MilloLabel from "@/components/MilloLabel";
 import Newsletter from "@/components/Newsletter";
 
 export default async function HomePage() {
@@ -20,7 +20,7 @@ export default async function HomePage() {
         <Hero />
         <Features />
         <BestSellers products={products} />
-        <TrustBar />
+        <MilloLabel />
         <About />
         <Newsletter />
       </div>

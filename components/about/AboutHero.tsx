@@ -55,16 +55,6 @@ export default function AboutHero() {
         </div>
       </section>
 
-      {/* Brand label strip below hero */}
-      <div className="w-full bg-white">
-        <Image
-          src="/media/brand/Millo-label.jpg"
-          alt="Millo — Ancient Grain. Modern Fuel."
-          width={1128}
-          height={191}
-          className="w-full h-auto object-cover"
-        />
-      </div>
     </>
   );
 }
