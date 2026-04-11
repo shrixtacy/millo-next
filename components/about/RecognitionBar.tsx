@@ -23,13 +23,13 @@ const recognitions = [
 
 export default function RecognitionBar() {
   return (
-    <section className="py-12 bg-white border-b border-gray-100">
+    <section className="py-6 bg-white border-b border-gray-100">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="flex flex-row items-center justify-center gap-4 sm:gap-16"
+          className="flex flex-row items-center justify-center gap-6 sm:gap-16"
         >
           {recognitions.map((r, i) => (
             <motion.div
@@ -38,10 +38,10 @@ export default function RecognitionBar() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
-              className="flex flex-col items-center gap-3"
+              className="flex flex-col items-center gap-1.5"
             >
-              <p className="text-xs font-semibold text-gray-400 uppercase tracking-widest">{r.label}</p>
-              <div className="relative h-16 w-28 sm:h-36 sm:w-72">
+              <p className="text-[9px] sm:text-xs font-semibold text-gray-400 uppercase tracking-wider">{r.label}</p>
+              <div className="relative h-10 w-20 sm:h-36 sm:w-72">
                 <Image
                   src={r.img}
                   alt={r.alt}
