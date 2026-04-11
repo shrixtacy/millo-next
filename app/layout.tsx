@@ -7,6 +7,8 @@ import CartDrawer from "@/components/CartDrawer";
 import Footer from "@/components/Footer";
 import MobileBottomNav from "@/components/mobile/MobileBottomNav";
 import WhatsAppButton from "@/components/WhatsAppButton";
+import MilloLabel from "@/components/MilloLabel";
+import RecognitionBar from "@/components/about/RecognitionBar";
 
 const dmSerif = DM_Serif_Display({
   subsets: ["latin"],
@@ -46,6 +48,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <Navbar />
           <CartDrawer />
           <main className="pb-16 lg:pb-0">{children}</main>
+          <div className="hidden lg:block"><MilloLabel /></div>
+          <RecognitionBar />
           <Footer />
           <WhatsAppButton />
           <MobileBottomNav />

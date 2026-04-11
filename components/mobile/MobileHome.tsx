@@ -256,24 +256,7 @@ export default function MobileHome({ products }: Props) {
         )}
       </div>
 
-      {/* Why Millo */}
-      <div className="mx-4 mb-4 rounded-2xl bg-[#2F5D3A] p-5">
-        <p className="text-white font-bold text-base mb-3">Why Millo?</p>
-        <div className="grid grid-cols-2 gap-2">
-          {[
-            { icon: "🌾", text: "100% Natural" },
-            { icon: "✅", text: "No Preservatives" },
-            { icon: "💪", text: "High Fiber" },
-            { icon: "🇮🇳", text: "Made in India" },
-          ].map((item) => (
-            <div key={item.text} className="flex items-center gap-2 bg-white/10 rounded-xl px-3 py-2">
-              <span className="text-base">{item.icon}</span>
-              <span className="text-white/90 text-xs font-medium">{item.text}</span>
-            </div>
-          ))}
-        </div>
-      </div>
-
+      {/* end mobile home */}
     </div>
   );
 }
