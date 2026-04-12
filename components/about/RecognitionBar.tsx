@@ -5,17 +5,17 @@ import Image from "next/image";
 
 const recognitions = [
   {
-    label: "Registered at",
+    label: "Recognised by: Startup India, Startup Odisha",
     img: "/media/about/startupodisha.png",
     alt: "Startup Odisha",
   },
   {
-    label: "Incubated by",
+    label: "Incubated at IIT BBS REP",
     img: "/media/about/iit-bhubaneswar.png",
     alt: "IIT Bhubaneswar",
   },
   {
-    label: "Supported by",
+    label: "A part of 100 Cube initiative",
     img: "/media/about/100cube.png",
     alt: "100 Cube",
   },
